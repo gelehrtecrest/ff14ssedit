@@ -470,6 +470,7 @@ function spuit(X, Y) {
   var r = parseInt(data[i]);        
   var g = parseInt(data[i+1]);
   var b = parseInt(data[i+2]);
+  var t = parseInt($('#t').val());
   $('#r').val(r);
   $('#g').val(g);
   $('#b').val(b);
