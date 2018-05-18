@@ -127,6 +127,7 @@
 			//読み込み
 			var rawcanvas = document.getElementById('rawcanvas');
 			baseImg.src = rawcanvas.toDataURL();
+			console.log(rawcanvas.toDataURL());
 			img2 = new createjs.Bitmap(baseImg);
 		});
 	
