@@ -37,6 +37,12 @@
 		img.scaleX = img.scaleX * (1 + imageIni.Scale / 10);
 		img.scaleY = img.scaleY * (1 + imageIni.Scale / 10);
 
+		// rawcanvasがベース
+		var rawcanvas = document.getElementById('rawcanvas');
+		baseImg.src = rawcanvas.toDataURL();
+		img2 = new createjs.Bitmap(baseImg);
+		console.log(rawcanvas.toDataURL());
+
 		//ステージ生成
 		stage.addChild(img2);
 		stage.addChild(img);
@@ -127,7 +133,6 @@
 			//読み込み
 			var rawcanvas = document.getElementById('rawcanvas');
 			baseImg.src = rawcanvas.toDataURL();
-			console.log(rawcanvas.toDataURL());
 			img2 = new createjs.Bitmap(baseImg);
 		});
 	
