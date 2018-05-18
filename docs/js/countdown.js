@@ -39,10 +39,15 @@
 
 		// rawcanvasがベース
 		var rawcanvas = document.getElementById('rawcanvas');
+		var baseImg = new Image();
 		baseImg.src = rawcanvas.toDataURL();
 		img2 = new createjs.Bitmap(baseImg);
-		console.log(rawcanvas.toDataURL());
+		$('#result').attr({
+			'width': baseImg.width,
+			'height': baseImg.height
+		});
 
+		stage = new createjs.Stage('result');
 		//ステージ生成
 		stage.addChild(img2);
 		stage.addChild(img);
@@ -72,10 +77,10 @@
 				this.Scale = 8;
 			},
 			makeImage : function(){
-				if(this.imageData !== null) {
+				//if(this.imageData !== null) {
 					//loadImage(this.imageData, this.logoImageData);
 					genImage(this);
-				}
+				//}
 			}
 		};
 
