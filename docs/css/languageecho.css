@@ -1,0 +1,53 @@
+#translate_text,
+#sns_text {
+  width: 100%;
+}
+
+.footer {
+  padding-top: 10px;
+  height: 220px;
+  background-color: lightgray;
+}
+
+.jcrop-holder {
+  margin: auto;
+}
+
+#loadimg {
+  width: 100%;
+}
+
+.main {
+  padding-bottom: 220px;
+}
+
+.logo {
+  float: left;
+  margin-top: -5px;
+  padding-right: 10px;
+}
+
+.navbar-inverse {
+  background-color: white;
+}
+
+.naver-brand {
+  color: black !important;
+}
+
+.naver-brand:hover {
+  color: black !important;
+}
+
+.languageecho-navbar{
+  border-radius: initial !important;
+}
+
+.languageecho-carousel {
+  height: 10px !important;
+  margin-bottom: 60px;
+}
+
+.howtouseimg {
+  max-width: 100%;
+}
