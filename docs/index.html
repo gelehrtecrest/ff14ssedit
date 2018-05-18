@@ -41,7 +41,9 @@
 		<link href="./css/jquery.Jcrop.min.css" rel="stylesheet">
 
 		<script src="./js/load-image.all.min.js"></script>
-		<script src="./js/languageecho.js?"></script>
+		<script src="./js/languageecho.js"></script>
+		<script src="./js/countdown.js"></script>
+
 
     		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     		<script src="/static/js/ie10-viewport-bug-workaround.js"></script>
@@ -90,20 +92,52 @@
 				</div>
 				<div class="col-lg-12">
 					<div class="alert alert-success">Step3.(任意) 書き込む文字列を設定してください。</div>
+					<div class="row">
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="exampleInputEmail1">合成したい文字</label>
+								<input type="text" class="form-control input" id="text" placeholder="文字列">
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="exampleInputEmail1">フォントカラー</label>
+								<input type="text" class="form-control input" id="color" placeholder="フォントカラー">
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="exampleInputEmail1">フォントスタイル</label>
+								<input type="text" class="form-control input" id="style" placeholder="フォントスタイル">
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="exampleInputEmail1">フォントサイズ</label>
+								<input type="text" class="form-control input" id="px" placeholder="フォントサイズ">
+							</div>
+						</div>
+						<div class="col-sm-12">
+							<div class="form-group">
+								<label for="exampleInputEmail1">フォントの種類(CSSショートハンド)</label>
+								<input type="text" class="form-control input" id="font" placeholder="フォントショートハンド">
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="col-lg-12">
 					<div class="alert alert-success">生成結果。右クリックでダウンロードしてください。</div>
 					<div style="overflow: scroll;">
-						<canvas id="rawcanvas" class="center-block" width="100%" height="100"></canvas>
 						<div style="display:none;">
+							<canvas id="rawcanvas" class="center-block" width="100%" height="100"></canvas>
 							<canvas id="canvas" class="center-block" width="100%" height="100"></canvas>
-						</div>
-				              <img id="canvasupfile" style="display:none;">
+							<img id="canvasupfile" style="display:none;">
+        					</div>
+						<canvas id="result" width="100%" height="100%"></canvas>
         				      <br />
  					</div>
 				</div>
-				<div class="col-lg-12">
-					<div class="alert alert-success">Step4.(任意) さらに加工したい場合、左クリックでマウスドラッグすると手書き文字を入れることもできます。</div>
+				<div class="col-lg-12" style="display:none;">
 					<div class="container">
 						<input name="mode" value="pen" checked="checked" style="display:none;" />
 						<div id="penmode">
