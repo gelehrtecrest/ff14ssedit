@@ -62,18 +62,18 @@
 		$('#color').val('white');
 		$('#style').val('');
 		$('#font').val('/1.5 Meiryo,sans-serif');
-		$('#px').val('75px');
+		$('#px').val('8px');
 
 		//読込画像のオブジェクト
 		var imageIni = {
-			xPos : 8,
-			yPos : 8,
+			xPos : 4,
+			yPos : 4,
 			Scale : 8,
 			imageData : null,
 			logoImageData : null,
 			resetImage : function(){
-				this.xPos = 8;
-				this.yPos = 8;
+				this.xPos = 4;
+				this.yPos = 4;
 				this.Scale = 8;
 			},
 			makeImage : function(){
