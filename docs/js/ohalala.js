@@ -11,7 +11,7 @@
 		if($('input[name=logo]:checked').val() === 'local'){
 			if(logoImageData !== null) {
 				var baseImg = new Image();
-				var canvas = document.getElementById('canvas');
+				var canvas = document.getElementById('logocanvas');
 				baseImg.src = canvas.toDataURL();
 				img = new createjs.Bitmap(baseImg);
 			} else {
@@ -60,14 +60,13 @@
 
 		// resultがベース
 		var result = document.getElementById('result');
-		var baseImg = new Image();
-		baseImg.src = result.toDataURL();
+		var baseImg2 = new Image();
+		baseImg2.src = result.toDataURL();
 		img2 = new createjs.Bitmap(baseImg);
 		$('#result2').attr({
-			'width': baseImg.width,
-			'height': baseImg.height
+			'width': baseImg2.width,
+			'height': baseImg2.height
 		});
-		console.log(genImage);
 
 		stage = new createjs.Stage('result2');
 		//ステージ生成
@@ -173,9 +172,9 @@
 		*/
 		$('#result').change(function (){
 			//読み込み
-			var canvas = document.getElementById('result');
-			baseImg.src = canvas.toDataURL();
-			img2 = new createjs.Bitmap(baseImg);
+			var result = document.getElementById('result');
+			baseImg2.src = result.toDataURL();
+			img2 = new createjs.Bitmap(baseImg2);
 		});
 	
 		//ロゴ画像読込
@@ -207,11 +206,11 @@
 		function loadlogocanvas(url, flag){
 			var image = new Image();
 			image.onload = function() {
-				$('#canvas').attr({
+				$('#logocanvas').attr({
 					'width': image.width,
 					'height': image.height
 				});
-				var canvas = document.getElementById('canvas');
+				var canvas = document.getElementById('logocanvas');
 				var context = canvas.getContext('2d');
  				context.drawImage(image, 0, 0);
 				var imageData = context.getImageData(0, 0, context.canvas.width, context.canvas.height);
