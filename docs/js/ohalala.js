@@ -67,6 +67,7 @@
 			'width': baseImg.width,
 			'height': baseImg.height
 		});
+		console.log(genImage);
 
 		stage = new createjs.Stage('result2');
 		//ステージ生成
@@ -274,6 +275,7 @@
 				return;
 			}
 
+			console.log("update");
 			//画像操作時は再描画を行う
 			//if(imageIni.imageData !== null){
 				imageIni.makeImage();
