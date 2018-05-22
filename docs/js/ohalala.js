@@ -61,7 +61,7 @@
 		// resultがベース
 		var result = document.getElementById('result');
 		var baseImg = new Image();
-		baseImg.src = rawcanvas.toDataURL();
+		baseImg.src = resulresultt.toDataURL();
 		img2 = new createjs.Bitmap(baseImg);
 		$('#result2').attr({
 			'width': baseImg.width,
