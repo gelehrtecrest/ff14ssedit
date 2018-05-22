@@ -115,10 +115,10 @@
 				this.rotation = 0;
 			},
 			makeImage : function(){
-				if(this.imageData !== null) {
+				//if(this.imageData !== null) {
 					loadImage(this.imageData, this.logoImageData);
 					genImage(this);
-				}
+				//}
 			}
 		};
 
