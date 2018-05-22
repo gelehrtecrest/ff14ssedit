@@ -238,6 +238,8 @@
 
 		//ボタンイベントまとめ
 		$('.btn2').on('click',function(e){
+			console.log("click");
+			console.log(e.target.id);
 			if (e.target.id === 'update2'){
 			}else if (e.target.id === 'up2'){
 				imageIni.yPos -= 1;
