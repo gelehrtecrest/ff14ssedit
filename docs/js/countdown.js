@@ -3,6 +3,7 @@
 	var img;
 	var img2;
 	var stage;
+	var stage2;
 
 	//画像ロード
 	function loadImage (imageData, logoImageData){
@@ -54,6 +55,16 @@
 
 		//ステージ反映
 		stage.update();
+
+		//おはララロゴの方のステージにも書き込む
+		stage2 = new createjs.Stage('result');
+		//ステージ生成
+		stage2.addChild(img2);
+		stage2.addChild(img);
+
+		//ステージ反映
+		stage2.update();
+
 	}
 
 	$(function(){
