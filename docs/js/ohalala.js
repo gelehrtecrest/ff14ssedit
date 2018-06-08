@@ -240,6 +240,7 @@
 			console.log("click");
 			console.log(e.target.id);
 			if (e.target.id === 'update2'){
+				imageIni.makeImage();
 			}else if (e.target.id === 'up2'){
 				imageIni.yPos -= 1;
 			}else if (e.target.id === 'down2'){
@@ -276,7 +277,6 @@
 				return;
 			}
 
-			console.log("update");
 			//画像操作時は再描画を行う
 			//if(imageIni.imageData !== null){
 				imageIni.makeImage();
