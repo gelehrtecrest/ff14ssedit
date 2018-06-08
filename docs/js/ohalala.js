@@ -79,8 +79,8 @@
 
 	$(function(){
 		//設定のデフォルト値
-		$('#logourl').val('https://pbs.twimg.com/media/Ddo2-VoV0AIO6xZ.png');
-		loadlogocanvas('https://pbs.twimg.com/media/Ddo2-VoV0AIO6xZ.png', false);
+		$('#logourl').val('https://pbs.twimg.com/media/Ddo2_5HVAAIhpUm.png');
+		loadlogocanvas('https://pbs.twimg.com/media/Ddo2_5HVAAIhpUm.png', false);
 	
 		//ロゴURL変更時の処理
 		$(document).on('input', '#logourl', function() {
@@ -101,7 +101,7 @@
 
 		//読込画像のオブジェクト
 		var imageIni = {
-			xPos : 2,
+			xPos : 0,
 			yPos : 3,
 			Scale : -5,
 			rotation : 0,
@@ -172,7 +172,6 @@
 		*/
 		$('#result').change(function (){
 			//読み込み
-			console.log("result change");
 			var result = document.getElementById('result');
 			baseImg2.src = result.toDataURL();
 			img2 = new createjs.Bitmap(baseImg2);
@@ -287,7 +286,6 @@
 		});
 		//
 		$('.btn').on('click',function(e){
-			console.log("btn click");
 			imageIni.makeImage();
 		});
 	
