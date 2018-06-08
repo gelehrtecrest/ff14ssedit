@@ -102,7 +102,7 @@
 		//読込画像のオブジェクト
 		var imageIni = {
 			xPos : 2,
-			yPos : 2,
+			yPos : 3,
 			Scale : -5,
 			rotation : 0,
 			alpha : 1.0,
@@ -110,7 +110,7 @@
 			logoImageData : null,
 			resetImage : function(){
 				this.xPos = 2;
-				this.yPos = 2;
+				this.yPos = 3;
 				this.Scale = -5;
 				this.rotation = 0;
 			},
@@ -172,6 +172,7 @@
 		*/
 		$('#result').change(function (){
 			//読み込み
+			console.log("result change");
 			var result = document.getElementById('result');
 			baseImg2.src = result.toDataURL();
 			img2 = new createjs.Bitmap(baseImg2);
@@ -282,9 +283,14 @@
 			//}
 
 			//画面操作時はURLを再生成する
-			write_settingurl(imageIni);
+			//write_settingurl(imageIni);
 		});
-
+		//
+		$('.btn').on('click',function(e){
+			console.log("btn click");
+			imageIni.makeImage();
+		});
+	
 		$('input[name=logo]').click(function() {
 			//チェックボックス操作時は再描画を行う
 			if(imageIni.imageData !== null){
