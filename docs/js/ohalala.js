@@ -62,7 +62,7 @@
 		var result = document.getElementById('result');
 		var baseImg2 = new Image();
 		baseImg2.src = result.toDataURL();
-		img2 = new createjs.Bitmap(baseImg);
+		img2 = new createjs.Bitmap(baseImg2);
 		$('#result2').attr({
 			'width': baseImg2.width,
 			'height': baseImg2.height
