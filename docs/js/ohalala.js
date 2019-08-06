@@ -79,8 +79,8 @@
 
 	$(function(){
 		//設定のデフォルト値
-		$('#logourl').val('https://pbs.twimg.com/media/Ddo2_5HVAAIhpUm.png');
-		loadlogocanvas('https://pbs.twimg.com/media/Ddo2_5HVAAIhpUm.png', false);
+		$('#logourl').val('../ohalala/docs/default.png');
+		loadlogocanvas('../ohalala/docs/default.png', false);
 	
 		//ロゴURL変更時の処理
 		$(document).on('input', '#logourl', function() {

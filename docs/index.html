@@ -10,7 +10,7 @@
 		<meta name="author" content="Gelehrte Crest">
 
 		<!-- Bootstrap core CSS -->
-		<link href="./css/bootstrap.min.css" rel="stylesheet">
+		<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
 
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -125,16 +125,6 @@
 								<input type="text" class="form-control input" id="font" placeholder="フォントショートハンド">
 							</div>
 						</div>
-						<div class="btn">
-							<button id="update" class="btn btn-primary">合成</button>
-							<button id="left" class="btn btn-default">←</button>
-							<button id="up" class="btn btn-default">↑</button>
-							<button id="down" class="btn btn-default">↓</button>
-							<button id="right" class="btn btn-default">→</button>
-							<button id="zoomin" class="btn btn-default">拡大</button>
-							<button id="zoomout" class="btn btn-default">縮小</button>
-							<button id="reset" class="btn btn-warning">リセット</button>
-						</div>
 					</div>
 				</div>
 				<hr />
@@ -151,7 +141,59 @@
 </script>
 				<hr />
 				<div class="col-lg-12">
-					<div class="alert alert-success">生成結果。右クリックでダウンロードしてください。</div>
+					<div class="alert alert-success">合成ボタンを押すと文字が貼り付けられます。文字の位置・サイズも変更できます。</div>
+					<div class="module">
+						<div style="display:none">
+							<img id="newImg">
+							<a href="" id="dlImg"></a>
+						</div>
+						<h5>
+							ダウンロードボタンからダウンロード可能です。
+							<button id="btnDownload" class="btn btn-primary">ダウンロード</button>
+						</h5>
+						<h5>
+							スマホなどの場合は、別ウィンドウを開いた方が保存しやすいかもしれません。
+							<button id="btnNewWindow" class="btn btn-primary">別ウィンドウを開く</button>
+						</h5>
+						<h5>もしダウンロードボタンが使えない場合は、生成結果を右クリックしてダウンロードしてください。</h5>
+						<div id="alert" class="alert alert-warning" role="alert"></div>
+					</div>
+					<div class="container">
+						<div class="row">
+							<button id="update" class="col-sm-2 editgenerator btn btn-primary">
+								<div class="lang editgenerator" language="ja">合成</div>
+								<div class="lang editgenerator" language="en" style="display:none">Put</div>
+								<div class="lang editgenerator" language="ch" style="display:none">放置</div>
+								<div class="lang editgenerator" language="kr" style="display:none">넣기</div>
+							</button>
+							<button id="reset" class="col-sm-2 editgenerator btn btn-warning">
+								<div class="lang editgenerator" language="ja">リセット</div>
+								<div class="lang editgenerator" language="en" style="display:none">Reset</div>
+								<div class="lang editgenerator" language="ch" style="display:none">重启</div>
+								<div class="lang editgenerator" language="kr" style="display:none">다시 놓기</div>
+							</button>
+							<button id="left" class="col-sm-2 editgenerator btn btn-default">←</button>
+							<button id="up" class="col-sm-2 editgenerator btn btn-default">↑</button>
+							<button id="down" class="col-sm-2 editgenerator btn btn-default">↓</button>
+							<button id="right" class="col-sm-2 editgenerator btn btn-default">→</button>
+							<button id="zoomin" class="col-sm-2 editgenerator btn btn-default glyphicon glyphicon-resize-full"></button>
+							<button id="zoomout" class="col-sm-2 editgenerator btn btn-default glyphicon glyphicon-resize-small"></button>
+							<button id="rotation_l" class="col-sm-2 editgenerator btn btn-default glyphicon glyphicon-repeat" style="transform: scale(-1, 1);"></button>
+							<button id="rotation_r" class="col-sm-2 editgenerator btn btn-default glyphicon glyphicon-repeat"></button>
+							<button id="alpha_down" class="col-sm-2 editgenerator btn btn-default">
+								<div id="alpha_down" class="lang editgenerator" language="ja">薄く</div>
+								<div id="alpha_down" class="lang editgenerator" language="en" style="display:none">Thin</div>
+								<div id="alpha_down" class="lang editgenerator" language="ch" style="display:none">瘦</div>
+								<div id="alpha_down" class="lang editgenerator" language="kr" style="display:none">얇은</div>
+							</button>
+							<button id="alpha_up" disabled class="col-sm-2 editgenerator btn btn-default">
+								<div id="alpha_up" class="lang editgenerator" language="ja">濃く</div>
+								<div id="alpha_up" class="lang editgenerator" language="en" style="display:none">Dark</div>
+								<div id="alpha_up" class="lang editgenerator" language="ch" style="display:none">黑暗</div>
+								<div id="alpha_up" class="lang editgenerator" language="kr" style="display:none">진하게</div>
+							</button>
+						</div>
+					</div>
 					<div style="overflow: scroll;">
 						<div style="display:none;">
 							<canvas id="rawcanvas" class="center-block" width="100%" height="100"></canvas>
