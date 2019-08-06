@@ -234,21 +234,70 @@
 					<div>
 						<canvas id="logocanvas" width="100%" height="100%" style="display:none;"></canvas>
 					</div>
-					<div class="btn2">
-						<button id="update2" class="btn btn-primary">合成</button>
-						<button id="left2" class="btn btn-default">←</button>
-						<button id="up2" class="btn btn-default">↑</button>
-						<button id="down2" class="btn btn-default">↓</button>
-						<button id="right2" class="btn btn-default">→</button>
-						<button id="zoomin2" class="btn btn-default">拡大</button>
-						<button id="zoomout2" class="btn btn-default">縮小</button>
-						<button id="rotation_l2" class="btn btn-default">左回転</button>
-						<button id="rotation_r2" class="btn btn-default">右回転</button>
-						<button id="alpha_down2" class="btn btn-default">薄く</button>
-						<button id="alpha_up2" disabled class="btn btn-default">濃く</button>
-						<button id="reset2" class="btn btn-warning">リセット</button>
+					<div class="alert alert-success lang" language="ja">Step5.(任意) 合成ボタンを押すとロゴが貼り付けられます。ロゴの位置・サイズも変更できます。</div>
+					<div class="alert alert-success lang" language="en" style="display:none">Step3. Push the "Put" button, and generate the ohalala screenshot.</div>
+					<div class="alert alert-success lang" language="ch" style="display:none">Step3. 按“放置”按钮，生成おはララ屏幕截图。</div>
+					<div class="alert alert-success lang" language="kr" style="display:none">Step3. '넣기'버튼을 누르고 おはララ 스크린 샷을 생성합니다.</div>
+					<div class="module">
+						<h3>以下のボタンで操作後ダウンロードしてください。</h3>
+						<div style="display:none">
+							<img id="newImg2">
+							<a href="" id="dlImg2"></a>
+						</div>
+						<h5>
+							ダウンロードボタンからダウンロード可能です。
+							<button id="btnDownload2" class="btn btn-primary lang" language="ja">ダウンロード</button>
+							<button id="btnDownload2" class="btn btn-primary lang" language="en" style="display:none">Download</button>
+							<button id="btnDownload2" class="btn btn-primary lang" language="ch" style="display:none">下载</button>
+							<button id="btnDownload2" class="btn btn-primary lang" language="kr" style="display:none">다운로드</button>
+						</h5>
+						<h5>
+							スマホなどの場合は、別ウィンドウを開いた方が保存しやすいかもしれません。
+							<button id="btnNewWindow2" class="btn btn-primary lang" language="ja">別ウィンドウを開く</button>
+							<button id="btnNewWindow2" class="btn btn-primary lang" language="en" style="display:none">Open another window</button>
+							<button id="btnNewWindow2" class="btn btn-primary lang" language="ch" style="display:none">打开另一个窗口</button>
+							<button id="btnNewWindow2" class="btn btn-primary lang" language="kr" style="display:none">다른 창을 엽니 다</button>
+						</h5>
+						<h5>もしダウンロードボタンが使えない場合は、生成結果を右クリックしてダウンロードしてください。</h5>
+						<div id="alert2" class="alert alert-warning" role="alert"></div>
 					</div>
-					<br />
+					<div class="container">
+						<h3 class="lang" language="ja">ロゴの操作</h3>
+						<div class="row">
+							<button id="update2" class="col-sm-2 editgenerator btn btn-primary">
+								<div class="lang editgenerator2" language="ja">合成</div>
+								<div class="lang editgenerator2" language="en" style="display:none">Put</div>
+								<div class="lang editgenerator2" language="ch" style="display:none">放置</div>
+								<div class="lang editgenerator2" language="kr" style="display:none">넣기</div>
+							</button>
+							<button id="reset2" class="col-sm-2 editgenerator btn btn-warning">
+								<div class="lang editgenerator2" language="ja">リセット</div>
+								<div class="lang editgenerator2" language="en" style="display:none">Reset</div>
+								<div class="lang editgenerator2" language="ch" style="display:none">重启</div>
+								<div class="lang editgenerator2" language="kr" style="display:none">다시 놓기</div>
+							</button>
+							<button id="left2" class="col-sm-2 editgenerator2 btn btn-default">←</button>
+							<button id="up2" class="col-sm-2 editgenerator2 btn btn-default">↑</button>
+							<button id="down2" class="col-sm-2 editgenerator2 btn btn-default">↓</button>
+							<button id="right2" class="col-sm-2 editgenerator2 btn btn-default">→</button>
+							<button id="zoomin2" class="col-sm-2 editgenerator2 btn btn-default glyphicon glyphicon-resize-full"></button>
+							<button id="zoomout2" class="col-sm-2 editgenerator2 btn btn-default glyphicon glyphicon-resize-small"></button>
+							<button id="rotation_l2" class="col-sm-2 editgenerator2 btn btn-default glyphicon glyphicon-repeat" style="transform: scale(-1, 1);"></button>
+							<button id="rotation_r2" class="col-sm-2 editgenerator2 btn btn-default glyphicon glyphicon-repeat"></button>
+							<button id="alpha_down2" class="col-sm-2 editgenerator2 btn btn-default">
+								<div id="alpha_down2" class="lang editgenerator2" language="ja">薄く</div>
+								<div id="alpha_down2" class="lang editgenerator2" language="en" style="display:none">Thin</div>
+								<div id="alpha_down2" class="lang editgenerator2" language="ch" style="display:none">瘦</div>
+								<div id="alpha_down2" class="lang editgenerator2" language="kr" style="display:none">얇은</div>
+							</button>
+							<button id="alpha_up2" disabled class="col-sm-2 editgenerator2 btn btn-default">
+								<div id="alpha_up2" class="lang editgenerator2" language="ja">濃く</div>
+								<div id="alpha_up2" class="lang editgenerator2" language="en" style="display:none">Dark</div>
+								<div id="alpha_up2" class="lang editgenerator2" language="ch" style="display:none">黑暗</div>
+								<div id="alpha_up2" class="lang editgenerator2" language="kr" style="display:none">진하게</div>
+							</button>
+						</div>
+							<br />
 					<div class="alert alert-success">生成結果。右クリックでダウンロードしてください。</div>
 						<div style="overflow: scroll;">
 							<canvas id="result2" class="center-block" width="100%" height="100%"></canvas>

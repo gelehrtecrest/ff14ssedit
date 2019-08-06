@@ -90,12 +90,12 @@
 				var baseImg = new Image();
 				baseImg.src = $('#logourl').val();
 				img = new createjs.Bitmap(baseImg);
-				$('#alert').text('');
+				$('#alert2').text('');
 				//URL再生成
 				write_settingurl(imageIni);
 				loadlogocanvas($('#logourl').val(), false);
 			}).fail(function(data){
-				$('#alert').text('ロゴのURLが間違っています。ヒント：httpsから始まるURLにしてください。');
+				$('#alert2').text('ロゴのURLが間違っています。ヒント：httpsから始まるURLにしてください。');
 			});
 		});
 
@@ -170,13 +170,14 @@
 			});
 		});
 		*/
+
 		$('#result').change(function (){
 			//読み込み
 			var result = document.getElementById('result');
 			baseImg2.src = result.toDataURL();
 			img2 = new createjs.Bitmap(baseImg2);
 		});
-	
+
 		//ロゴ画像読込
 		$('#logogetfile').change(function (){
 			//読み込み
@@ -184,9 +185,11 @@
 			var reader = new FileReader();
 			reader.readAsDataURL(fileList[0]);
 			//読み込み後
+			console.log("logogetfile");
 			$(reader).on('load',function(){
 				imageIni.logoImageData = reader.result;
 				loadlogocanvas(reader.result, false);
+				console.log("test2");
 			});
 		});
 
@@ -236,6 +239,89 @@
 		}
 
 		//ボタンイベントまとめ
+		var editgenerator_button = "";
+		var flag = 0;
+		// 加速機能
+		const boost_limit = 5;
+		const boost_value = 3;
+		const boost_not_value = 1;
+		var boost_count = 0;
+		const boost_id_default = "boost";
+		var boost_id = boost_id_default;
+		function boost(id){
+			if(boost_id === id){
+				boost_count += 1;
+			} else {
+				boost_count = 0;
+				boost_id = id;
+			}
+			if(boost_count >= boost_limit){
+				return boost_value;
+			}
+			return boost_not_value;
+		}
+		function editgenerator(id){
+			console.log(id);
+			if(flag == 0){
+				flag = 1;
+				return;
+			} else {
+				flag = 0;
+			}
+			if (id === 'update2'){
+			}else if (id === 'up2'){
+				imageIni.yPos -= 1*boost(id);
+			}else if (id === 'down2'){
+				imageIni.yPos += 1*boost(id);
+			}else if (id === 'left2'){
+				imageIni.xPos -= 1*boost(id);
+			}else if (id === 'right2') {
+				imageIni.xPos += 1*boost(id);
+			}else if (id === 'zoomin2') {
+				imageIni.Scale += 1*boost(id);
+			}else if (id === 'zoomout2') {
+				imageIni.Scale -= 1*boost(id);
+			}else if (id === 'rotation_r2') {
+				imageIni.rotation += 7.5*boost(id);
+			}else if (id === 'rotation_l2') {
+				imageIni.rotation -= 7.5*boost(id);
+			}else if (id === 'alpha_up2') {
+				imageIni.alpha += 0.1*boost(id);
+				if(imageIni.alpha >= 0.9){
+					imageIni.alpha = 1.0;
+					$('#alpha_up2').prop("disabled", true);
+				}
+				$('#alpha_down').prop("disabled", false);
+			}else if (id === 'alpha_down2') {
+				imageIni.alpha -= 0.1*boost(id);
+				if(imageIni.alpha <= 0.1){
+					imageIni.alpha = 0.0;
+					$('#alpha_down2').prop("disabled", true);
+				}
+				$('#alpha_up').prop("disabled", false);
+			}else if (id === 'reset2'){
+				imageIni.resetImage();
+				boost(id)
+				$('#alpha_up2').prop("disabled", true);
+				$('#alpha_down2').prop("disabled", false);
+			}else if (id === 'dl'){
+				return;
+			}
+
+			//画像操作時は再描画を行う
+			//if(imageIni.imageData !== null){
+				$('#alert2').text('合成作業開始中です。');
+				imageIni.makeImage();
+				$('#alert2').text('合成完了です！');
+			//}else{
+			//	$('#alert2').text('スクリーンショットを入力してから画像生成を行ってください ?');
+				console.log(imageIni);
+			//}
+
+			//画面操作時はURLを再生成する
+			write_settingurl(imageIni);
+		}
+		/*
 		$('.btn2').on('click',function(e){
 			if (e.target.id === 'update2'){
 			}else if (e.target.id === 'up2'){
@@ -284,11 +370,51 @@
 			//画面操作時はURLを再生成する
 			//write_settingurl(imageIni);
 		});
-		//
+		*/
+		/*
 		$('.btn').on('click',function(e){
 			imageIni.makeImage();
 		});
-	
+		*/
+		var pushing_flag = 0;
+		var mouse_push_hold = function(){
+			editgenerator(editgenerator_button);
+			if( pushing_flag == 1 ){
+				setTimeout(mouse_push_hold, 100);
+			}
+		};
+
+		// PC用
+		$(".editgenerator2").mousedown(function(e){
+			editgenerator_button = e.target.id;
+			pushing_flag = 1;
+			setTimeout(mouse_push_hold, 1);
+			return false;
+		}).mouseup(function(){
+			pushing_flag = 0;
+			clearTimeout(mouse_push_hold);
+			boost(boost_id_default);
+		}).mouseleave(function(){
+			pushing_flag = 0;
+			clearTimeout(mouse_push_hold);
+			boost(boost_id_default);
+		}).mouseover(function(){
+			pushing_flag = 0;
+			clearTimeout(mouse_push_hold);
+		});
+
+		//スマホ用
+		$(".editgenerator2").bind('touchstart', function(e){
+			editgenerator_button = e.target.id;
+			pushing_flag = 1;
+			setTimeout(mouse_push_hold, 1);
+			return false;
+		});
+		$(".editgenerator2").bind('touchend', function(e){
+			pushing_flag = 0;
+			boost(boost_id_default);
+			return false;
+		});
 		$('input[name=logo]').click(function() {
 			//チェックボックス操作時は再描画を行う
 			if(imageIni.imageData !== null){
@@ -303,6 +429,21 @@
 
 		//初回URL生成
 		write_settingurl(imageIni);
+				//Canvas Download
+				$('#btnDownload2').on("click", function() {
+					$('#alert2').text('ダウンロード ボタンクリック');
+					//if($('input[name=logo]:checked').val() === 'local'){
+						DownloadStart();
+					//} else if($('input[name=logo]:checked').val() === 'local_white'){
+					//	DownloadStart();
+					//} else {
+					//	alert('ロゴがURL指定のため、ダウンロードボタンは使用できません。')
+					//}
+					$('#alert2').text('ダウンロード処理終了');
+				});
+				$('#btnNewWindow2').on("click", function() {
+					NewWindow();
+				});
 	});
 
 	//画像先読み込み
@@ -350,3 +491,76 @@
 		$('#settingurl a').attr('href', url);
 	}
 })($);
+
+function DownloadStart(){
+	
+	var cve = document.getElementById("result2");
+	if (cve.getContext) {
+		// ダウンロード ファイル名
+		var now = new Date();
+		var year = now.getYear();
+		var month = now.getMonth() + 1;
+		var day = now.getDate();
+		var hour = now.getHours();
+		var min = now.getMinutes();
+		var sec = now.getSeconds();
+
+		var filename = 'download_' + year + month + day + hour + min + sec + '.png';
+
+		var ctx = cve.getContext('2d');
+		var base64;
+		try {
+			base64 = cve.toDataURL();
+		}catch(e) {
+			alert("ロゴが外部URLをしているため、ダウンロードボタンを使用できません。")
+			return;
+		}
+		document.getElementById("newImg2").src = base64;
+
+		var blob = Base64toBlob(base64);
+		const url = window.URL.createObjectURL(blob);
+		document.getElementById("dlImg2").href = url;
+		document.getElementById("dlImg2").download = filename;
+
+		$('#alert').text("ブラウザ判定");
+		//  ダウンロード開始
+		if (window.navigator.msSaveBlob) {
+			// IE
+			window.navigator.msSaveBlob(Base64toBlob(base64), filename);
+		} else {
+			// Chrome, Firefox, Edge
+			document.getElementById("dlImg2").click();
+		}
+		window.URL.revokeObjectURL(url);
+	}
+}
+
+function Base64toBlob(base64)
+{
+	var tmp = base64.split(',');
+	var data = atob(tmp[1]);
+	var mime = tmp[0].split(':')[1].split(';')[0];
+	var buf = new Uint8Array(data.length);
+	for (var i = 0; i < data.length; i++) {
+		buf[i] = data.charCodeAt(i);
+	}
+	var blob = new Blob([buf], { type: mime });
+	return blob;
+}
+
+function NewWindow(){
+	
+	var cve = document.getElementById("result2");
+	if (cve.getContext) {
+		var dataUrl;
+		try {
+			dataUrl = cve.toDataURL();
+		}catch(e) {
+			alert("ロゴが外部URLをしているため、ダウンロードボタンを使用できません。")
+			return;
+		}
+		var w = window.open('about:blank');
+		w.document.write("<img src='" + dataUrl + "'/>");
+	} else {
+	}
+}
