@@ -429,21 +429,35 @@
 
 		//初回URL生成
 		write_settingurl(imageIni);
-				//Canvas Download
-				$('#btnDownload2').on("click", function() {
-					$('#alert2').text('ダウンロード ボタンクリック');
-					//if($('input[name=logo]:checked').val() === 'local'){
-						DownloadStart();
-					//} else if($('input[name=logo]:checked').val() === 'local_white'){
-					//	DownloadStart();
-					//} else {
-					//	alert('ロゴがURL指定のため、ダウンロードボタンは使用できません。')
-					//}
-					$('#alert2').text('ダウンロード処理終了');
-				});
-				$('#btnNewWindow2').on("click", function() {
-					NewWindow();
-				});
+		//Canvas Download
+		$('#btnDownload').on("click", function() {
+			$('#alert').text('ダウンロード ボタンクリック');
+			//if($('input[name=logo]:checked').val() === 'local'){
+				DownloadStart();
+			//} else if($('input[name=logo]:checked').val() === 'local_white'){
+			//	DownloadStart();
+			//} else {
+			//	alert('ロゴがURL指定のため、ダウンロードボタンは使用できません。')
+			//}
+			$('#alert').text('ダウンロード処理終了');
+		});
+		$('#btnNewWindow').on("click", function() {
+			NewWindow();
+		});
+		$('#btnDownload2').on("click", function() {
+			$('#alert2').text('ダウンロード ボタンクリック');
+			//if($('input[name=logo]:checked').val() === 'local'){
+				DownloadStart2();
+			//} else if($('input[name=logo]:checked').val() === 'local_white'){
+			//	DownloadStart();
+			//} else {
+			//	alert('ロゴがURL指定のため、ダウンロードボタンは使用できません。')
+			//}
+			$('#alert2').text('ダウンロード処理終了');
+		});
+		$('#btnNewWindow2').on("click", function() {
+			NewWindow2();
+		});
 	});
 
 	//画像先読み込み
@@ -493,6 +507,49 @@
 })($);
 
 function DownloadStart(){
+	
+	var cve = document.getElementById("result");
+	if (cve.getContext) {
+		// ダウンロード ファイル名
+		var now = new Date();
+		var year = now.getYear();
+		var month = now.getMonth() + 1;
+		var day = now.getDate();
+		var hour = now.getHours();
+		var min = now.getMinutes();
+		var sec = now.getSeconds();
+
+		var filename = 'download_' + year + month + day + hour + min + sec + '.png';
+
+		var ctx = cve.getContext('2d');
+		var base64;
+		try {
+			base64 = cve.toDataURL();
+		}catch(e) {
+			alert("ロゴが外部URLをしているため、ダウンロードボタンを使用できません。")
+			return;
+		}
+		document.getElementById("newImg").src = base64;
+
+		var blob = Base64toBlob(base64);
+		const url = window.URL.createObjectURL(blob);
+		document.getElementById("dlImg2").href = url;
+		document.getElementById("dlImg2").download = filename;
+
+		$('#alert').text("ブラウザ判定");
+		//  ダウンロード開始
+		if (window.navigator.msSaveBlob) {
+			// IE
+			window.navigator.msSaveBlob(Base64toBlob(base64), filename);
+		} else {
+			// Chrome, Firefox, Edge
+			document.getElementById("dlImg2").click();
+		}
+		window.URL.revokeObjectURL(url);
+	}
+}
+
+function DownloadStart2(){
 	
 	var cve = document.getElementById("result2");
 	if (cve.getContext) {
@@ -549,6 +606,22 @@ function Base64toBlob(base64)
 }
 
 function NewWindow(){
+	
+	var cve = document.getElementById("result");
+	if (cve.getContext) {
+		var dataUrl;
+		try {
+			dataUrl = cve.toDataURL();
+		}catch(e) {
+			alert("ロゴが外部URLをしているため、ダウンロードボタンを使用できません。")
+			return;
+		}
+		var w = window.open('about:blank');
+		w.document.write("<img src='" + dataUrl + "'/>");
+	} else {
+	}
+}
+function NewWindow2(){
 	
 	var cve = document.getElementById("result2");
 	if (cve.getContext) {
