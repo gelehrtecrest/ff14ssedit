@@ -374,7 +374,6 @@
 })($);
 
 function DownloadStart(){
-	
 	var cve = document.getElementById("result");
 	if (cve.getContext) {
 		// ダウンロード ファイル名

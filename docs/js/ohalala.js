@@ -432,8 +432,10 @@
 		//Canvas Download
 		$('#btnDownload').on("click", function() {
 			$('#alert').text('ダウンロード ボタンクリック');
+
+			// countdown.jsで行っているのでいったん封印
 			//if($('input[name=logo]:checked').val() === 'local'){
-				DownloadStart();
+				//DownloadStart();
 			//} else if($('input[name=logo]:checked').val() === 'local_white'){
 			//	DownloadStart();
 			//} else {
