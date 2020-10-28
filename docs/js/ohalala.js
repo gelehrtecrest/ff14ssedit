@@ -509,7 +509,7 @@
 })($);
 
 function DownloadStart(){
-	
+	console.log("d1");	
 	var cve = document.getElementById("result");
 	if (cve.getContext) {
 		// ダウンロード ファイル名
@@ -522,6 +522,7 @@ function DownloadStart(){
 		var sec = now.getSeconds();
 
 		var filename = 'download_' + year + month + day + hour + min + sec + '.png';
+		console.log(filename);
 
 		var ctx = cve.getContext('2d');
 		var base64;
@@ -535,8 +536,8 @@ function DownloadStart(){
 
 		var blob = Base64toBlob(base64);
 		const url = window.URL.createObjectURL(blob);
-		document.getElementById("dlImg2").href = url;
-		document.getElementById("dlImg2").download = filename;
+		document.getElementById("dlImg").href = url;
+		document.getElementById("dlImg").download = filename;
 
 		$('#alert').text("ブラウザ判定");
 		//  ダウンロード開始
@@ -545,7 +546,7 @@ function DownloadStart(){
 			window.navigator.msSaveBlob(Base64toBlob(base64), filename);
 		} else {
 			// Chrome, Firefox, Edge
-			document.getElementById("dlImg2").click();
+			document.getElementById("dlImg").click();
 		}
 		window.URL.revokeObjectURL(url);
 	}
