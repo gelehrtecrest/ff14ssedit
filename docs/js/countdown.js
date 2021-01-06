@@ -69,7 +69,7 @@
 
 	$(function(){
 		//設定のデフォルト値
-		$('#text').val('Copyright (C) SQUARE ENIX CO., LTD. All Rights Reserved.');
+		$('#text').val('(C) SQUARE ENIX CO., LTD. All Rights Reserved.');
 		$('#color').val('white');
 		$('#style').val('');
 		$('#font').val('/1.5 Meiryo,sans-serif');
